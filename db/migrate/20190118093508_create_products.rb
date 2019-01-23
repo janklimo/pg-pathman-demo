@@ -6,5 +6,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.belongs_to :seller
       t.timestamps
     end
+
+    add_foreign_key :products, :sellers
   end
 end

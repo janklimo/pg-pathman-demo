@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-class Payout < Event
+class Payout < Transaction
 end

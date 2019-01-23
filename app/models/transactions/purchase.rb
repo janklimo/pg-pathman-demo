@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-class Purchase < ApplicationRecord
+class Purchase < Transaction
 end
