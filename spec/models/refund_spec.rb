@@ -6,7 +6,7 @@ describe Refund do
   end
 
   it 'makes sure total is negative' do
-    refund = Refund.create(seller: @seller, total_cents: 300)
+    refund = create(:refund, seller: @seller, total_cents: 300)
     expect(refund.total_cents).to eq(-300)
 
     refund.update(total_cents: -600)

@@ -6,10 +6,10 @@ describe Seller do
     @product = create(:product, seller: @seller)
     @purchase = create(:purchase, product: @product, seller: @seller)
     @purchase2 = create(:purchase, product: @product, seller: @seller)
-    @refund = create(:refund, seller: @seller)
+    @refund = create(:refund, seller: @seller, total_cents: 400)
   end
 
   it 'returns balance' do
-    expect(@seller.balance).to eq 10_000
+    expect(@seller.balance).to eq 19_600
   end
 end

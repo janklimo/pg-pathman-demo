@@ -3,15 +3,9 @@
 FactoryBot.define do
   factory :transaction do
     association :product
+    total_cents { 10_000 }
 
-    factory :purchase do
-      type { 'Purchase' }
-      total_cents { 10_000 }
-    end
-
-    factory :refund do
-      type { 'Refund' }
-      total_cents { -10_000 }
-    end
+    factory :purchase, class: 'Purchase'
+    factory :refund, class: 'Refund'
   end
 end
