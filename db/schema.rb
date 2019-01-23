@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_23_093748) do
+ActiveRecord::Schema.define(version: 2019_01_23_114850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_pathman"
@@ -45,10 +45,13 @@ ActiveRecord::Schema.define(version: 2019_01_23_093748) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "refund_id"
+    t.bigint "seller_id"
     t.index ["created_at"], name: "index_transactions_on_created_at"
     t.index ["product_id"], name: "index_transactions_on_product_id"
+    t.index ["seller_id"], name: "index_transactions_on_seller_id"
   end
 
   add_foreign_key "products", "sellers"
   add_foreign_key "transactions", "products"
+  add_foreign_key "transactions", "sellers"
 end

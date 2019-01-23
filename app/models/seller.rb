@@ -2,7 +2,7 @@
 
 class Seller < ApplicationRecord
   has_many :products
-  has_many :transactions, through: :products
+  has_many :transactions
 
   def balance
     transactions.sum(:total_cents)

@@ -52,13 +52,6 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  # See: https://github.com/flyerhzm/bullet#run-in-tests
-  config.after_initialize do
-    Bullet.enable = true
-    # raise an error if n+1 query occurs
-    Bullet.raise = true
-  end
-
   # Set random value for CircleCI and friends
   config.secret_key_base = SecureRandom.hex(64)
 end
