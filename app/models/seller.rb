@@ -15,7 +15,7 @@ class Seller < ApplicationRecord
   # here we can utilize DB partitions by looking at transactions since
   # the last payout only
   def balance_advanced
-    recent_payout = Payout.where('created_at > ?', (PERIOD + 1.day).ago).last
+    recent_payout = Payout.last
 
     if recent_payout
       transactions.where('created_at > ?', recent_payout.created_at)
