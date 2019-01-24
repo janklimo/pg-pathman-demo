@@ -4,7 +4,8 @@ describe Treasury do
   before do
     @seller = create(:seller)
     @product = create(:product, seller: @seller)
-    @purchase = create(:purchase, product: @product, seller: @seller)
+    @purchase = create(:purchase, product: @product, seller: @seller,
+                       created_at: 9.days.ago)
   end
 
   it 'issues payouts' do
@@ -16,7 +17,7 @@ describe Treasury do
     payout = Payout.last
 
     expect(payout.total_cents).to eq(-10_000)
-    expect(@seller.balance).to eq 0
+    expect(@seller.balance_amount).to eq 0
   end
 
   it 'issues refunds' do
@@ -29,6 +30,6 @@ describe Treasury do
 
     expect(@purchase.reload.refund).to eq refund
     expect(refund.total_cents).to eq(-10_000)
-    expect(@seller.balance).to eq 0
+    expect(@seller.balance_amount).to eq 0
   end
 end

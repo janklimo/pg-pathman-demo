@@ -2,7 +2,7 @@
 
 module Treasury
   def self.issue_payout_for(seller)
-    amount = seller.balance
+    amount = seller.payout_amount
     Payout.create(total_cents: amount, seller: seller)
   end
 
