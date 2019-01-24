@@ -7,5 +7,6 @@ FactoryBot.define do
 
     factory :purchase, class: 'Purchase'
     factory :refund, class: 'Refund'
+    factory :payout, class: 'Payout'
   end
 end

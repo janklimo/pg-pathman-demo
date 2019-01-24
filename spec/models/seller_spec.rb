@@ -9,7 +9,24 @@ describe Seller do
     @refund = create(:refund, seller: @seller, total_cents: 400)
   end
 
-  it 'returns balance' do
-    expect(@seller.balance).to eq 19_600
+  describe '#balance' do
+    it 'returns balance with either approach' do
+      expect(@seller.balance).to eq 19_600
+      expect(@seller.balance_advanced).to eq 19_600
+    end
+
+    context 'when a payout is found' do
+      before do
+        # won't be accounted for
+        create(:purchase, product: @product, seller: @seller, 
+               created_at: 3.weeks.ago)
+        @payout = create(:payout, seller: @seller, total_cents: 500,
+                         created_at: 1.week.ago)
+      end
+
+      it 'returns balance since last payout' do
+        expect(@seller.balance_advanced).to eq 19_600
+      end
+    end
   end
 end
